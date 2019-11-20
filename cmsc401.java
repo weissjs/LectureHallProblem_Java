@@ -6,58 +6,37 @@ public class cmsc401{
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
     String string_Test;
-    int numCourses = Character.getNumericValue(sc.nextLine().charAt(0));
-    int numRooms = Character.getNumericValue(sc.nextLine().charAt(0));
+    int numCourses = Integer.parseInt(sc.nextLine());
+    int numRooms = Integer.parseInt(sc.nextLine());
 
-    String[][] big_string = new String[numCourses][numRooms];
-    //System.out.println(sc.nextInt());
-    //int numCourses = sc.nextInt();
-    //int numRooms = sc.nextInt();
+    //auto-initialized to falses
+    boolean[][] big_bool = new boolean[numCourses][numRooms];
 
-    // if(sc.hasNextInt()){
-    //   System.out.println("has next int");
-    // }else System.out.println("does not");
+    //this loop scans each line of the input and then scans that line again
+    //after the first string "cx:" the loop begins reading in the hall values
+    //and triggers the corresponding boolean flag to be changed
+
     for(int i = 0; i < numCourses; i++){
       Scanner sc_line_by = new Scanner(sc.nextLine());
+      sc_line_by.useDelimiter("h");
+      //sc_line_by.useDelimiter(" ");
       sc_line_by.next();
-
       while(sc_line_by.hasNext()){
-        //string_Test = sc.next();
-        System.out.println("next is:" + sc_line_by.next());
-        //if(string_Test == "\n") break;
+        int curr = Integer.parseInt(sc_line_by.next().replaceAll("\\s+", ""));
+        //System.out.println("next is:" + curr + "j");
+        big_bool[i][curr-1] = true;
+
+        //System.out.println("bool is: " + big_bool[i][curr-1]);
       }
     }
 
-    //List<ArrayList<int>> full_list = new ArrayList<ArrayList<int>>();
-    // ArrayList<Integer>[] course = new ArrayList[numCourses];
-    //
-    // String curr_line;
-    //
-    // for (int i = 0; i < numCourses; i++) {
-    //   course[i] = new ArrayList<Integer>();
-    // }
-    // //int[] course_arr = new int[numCourses];
-    //
-    // System.out.println("numCourses :" + numCourses);
-    // System.out.println("numRooms : " +numRooms);
-    //
-    // //curr_line = sc.nextLine();
-    //
-    // //System.out.println("currline character 2: " + curr_line.charAt(1));
-    // for(int i = 0; i < numCourses; i++){
-    //   curr_line = sc.nextLine();
-    //   for(int j = 5; j < curr_line.length(); j+=3){
-    //     course[i].add(Character.getNumericValue(curr_line.charAt(j)));
-    //     //System.out.println(course[0].get(0));
-    //   }
-    // }
-    //
-    // for (int i = 0; i < numCourses; i++) {
-    //   for (int j = 0; j < course[i].size(); j++) {
-    //     System.out.print(course[i].get(j) + " ");
-    //   }
-    //   System.out.println();
-    // }
+    for(int i = 0; i < numCourses; i++){
+      for(int j = 0; j < numRooms; j++){
+        System.out.print(big_bool[i][j] + "   ");
+      }
+      System.out.println();
+    }
+
 
   }
 }
