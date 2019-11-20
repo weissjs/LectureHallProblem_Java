@@ -19,17 +19,14 @@ public class cmsc401{
     for(int i = 0; i < numCourses; i++){
       Scanner sc_line_by = new Scanner(sc.nextLine());
       sc_line_by.useDelimiter("h");
-      //sc_line_by.useDelimiter(" ");
       sc_line_by.next();
       while(sc_line_by.hasNext()){
         int curr = Integer.parseInt(sc_line_by.next().replaceAll("\\s+", ""));
-        //System.out.println("next is:" + curr + "j");
         big_bool[i][curr-1] = true;
-
-        //System.out.println("bool is: " + big_bool[i][curr-1]);
       }
     }
 
+    //print contents in big_bool array
     for(int i = 0; i < numCourses; i++){
       for(int j = 0; j < numRooms; j++){
         System.out.print(big_bool[i][j] + "   ");
